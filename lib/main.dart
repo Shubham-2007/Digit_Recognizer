@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:digit_finder/screen/Layout.dart';
 import 'package:provider/provider.dart';
 //import 'package:digit_finder/screen/Output.dart';
-
+import 'package:digit_finder/input_output/canvas.dart';
 void main() {
   runApp(MyApp());
 }
@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       providers: [
   ChangeNotifierProvider<Output>(create: (_) => Output()),
   ChangeNotifierProvider<CameraGallery>(create: (_) => CameraGallery()),
+  ChangeNotifierProvider<Draw1>(create: (_) => Draw1()),
 ],
       child: MaterialApp(
         title: 'Flutter Demo',

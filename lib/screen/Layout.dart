@@ -4,88 +4,92 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:digit_finder/screen/widget.dart';
-import 'package:digit_finder/server/DrawingPoints.dart';
+//import 'package:digit_finder/server/DrawingPoints.dart';
 import 'package:digit_finder/input_output/canvas.dart';
 // import 'dart:io';
 // import 'dart:ui' as ui;
 // import 'package:flutter/services.dart';
 // import 'dart:typed_data';
 
+// ignore: must_be_immutable
 class Layout extends StatelessWidget {
   //List<DrawingPoint> points = [];
   static GlobalKey previewContainer = new GlobalKey();
+  DrawingBoard floatbutton = new DrawingBoard();
   @override
   Widget build(BuildContext context) {
     final devicephoto = Provider.of<CameraGallery>(context);
     final showresult = Provider.of<Output>(context);
+    final draw = Provider.of<Draw1>(context);
     return Scaffold(
-      appBar: appbar(),
-      body: Container(
-        decoration: BoxDecoration(color: Colors.grey[700]),
-        padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
-        child: Column(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RepaintBoundary(
-              key: previewContainer,
-              child: Container(
-                //con > 0 ? uploadimage.imagereturn() : Container()
+        appBar: appbar(),
+        body: Container(
+          decoration: BoxDecoration(color: Colors.grey[700]),
+          padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+          child: Column(
+            //mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              RepaintBoundary(
+                key: previewContainer,
+                child: Container(
+                  //con > 0 ? uploadimage.imagereturn() : Container()
+                  width: double.infinity,
+                  height: 450,
+                  color: Colors.white,
+                  child: Consumer<CameraGallery>(
+                      builder: (context, provider, child) {
+                    return provider.imagereturn() == 'yes'
+                        ? Image.file(provider.imageFile)
+                        : DrawingBoard(); //drawprovider.drawingBoard(context);
+                  }),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
                 width: double.infinity,
-                height: 450,
-                color: Colors.white,
-                child: Consumer<CameraGallery>(
-                    builder: (context, provider, child) {
-                  return provider.imagereturn() == 'yes'
-                      ? Image.file(provider.imageFile)
-                      : DrawingBoard();
-                }),
+                height: 50,
+                child: FlatButton(
+                  child: Text("Camera/Phone Photo"),
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  onPressed: () {
+                    devicephoto.showdialong(context);
+                  },
+                ),
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              width: double.infinity,
-              height: 50,
-              child: FlatButton(
-                child: Text("Camera/Phone Photo"),
-                color: Colors.blue,
-                textColor: Colors.white,
-                onPressed: () {
-                  devicephoto.showdialong(context);
-                },
+              SizedBox(
+                height: 10,
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle, color: Colors.orangeAccent),
-              child: FlatButton(
-                child: Text("Check"),
-                onPressed: () async {
-                  //rint(devicephoto.imageFile);
-                  //File imagephoto = takeScreenShot(previewContainer)[0];
-                  // ByteData imagesize = takeScreenShot(previewContainer);
-                  // print("imagesize");print(imagesize);
-                  var image = await takeScreenShot(previewContainer);
-                  //print("++++++");
-                  //print(image);
-                  showresult.showdialongoutput(context,image);
-                },
-                //points.clear();
+              Container(
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle, color: Colors.orangeAccent),
+                child: FlatButton(
+                  child: Text("Check"),
+                  onPressed: () async {
+                    //rint(devicephoto.imageFile);
+                    //File imagephoto = takeScreenShot(previewContainer)[0];
+                    // ByteData imagesize = takeScreenShot(previewContainer);
+                    // print("imagesize");print(imagesize);
+                    var image = await takeScreenShot(previewContainer);
+                    //print("++++++");
+                    //print(image);
+                    showresult.showdialongoutput(context, image);
+                    devicephoto.noimagereturn();
+                    draw.clean();
+                  },
+                  //points.clear();
+                ),
+                height: 100,
+                width: 100,
               ),
-              height: 100,
-              width: 100,
-            ),
 
-            // showresult.clickbutton(context, imageFile),
-          ],
+              // showresult.clickbutton(context, imageFile),
+            ],
+          ),
         ),
-      ),
-       // floatingActionButton: DrawingBoard._DrawingBoardState.cleancanvas()
-    );
+        floatingActionButton: draw.cleancanvas());
   }
 }
 

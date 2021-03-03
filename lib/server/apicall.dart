@@ -3,7 +3,7 @@
 //import 'package:http/http.dart' as http;
 // import 'package:flutter/services.dart';
 import "package:dio/dio.dart";
-import 'dart:async';import 'dart:io';
+//import 'dart:async';import 'dart:io';
 // import 'dart:ui' as ui;
 
 // Future<String> identifyDigitFromAssets(imagephoto) async {

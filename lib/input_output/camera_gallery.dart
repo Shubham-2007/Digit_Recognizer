@@ -33,6 +33,11 @@ class CameraGallery extends ChangeNotifier {
       return "no";
   }
 
+  void noimagereturn() {
+    imageFile = null;
+    notifyListeners();
+  }
+
   Future<void> showdialong(BuildContext context) {
     return showDialog(
         context: context,
