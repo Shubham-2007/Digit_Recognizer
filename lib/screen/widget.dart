@@ -53,15 +53,15 @@ takeScreenShot(GlobalKey previewContainer) async {
 
 Widget appbar() {
   return AppBar(
-    title: Center(
-      child: Text(
-        'Digit Recognizer',
-        style:
-            //Theme.of(context).textTheme.headline1,
-            TextStyle(color: Colors.white),
-      ),
+    elevation: 0.0,
+    centerTitle: true,
+    title: Text(
+      'Draw',
+      style:
+          //Theme.of(context).textTheme.headline1,
+          TextStyle(color: Colors.white),
     ),
-    backgroundColor: Colors.grey[850],
+    backgroundColor: Colors.orange[900],
   );
 }
 

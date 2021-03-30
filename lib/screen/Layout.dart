@@ -15,79 +15,99 @@ import 'package:digit_finder/input_output/canvas.dart';
 class Layout extends StatelessWidget {
   //List<DrawingPoint> points = [];
   static GlobalKey previewContainer = new GlobalKey();
-  DrawingBoard floatbutton = new DrawingBoard();
+  // DrawingBoard floatbutton = new DrawingBoard();
   @override
   Widget build(BuildContext context) {
     final devicephoto = Provider.of<CameraGallery>(context);
     final showresult = Provider.of<Output>(context);
     final draw = Provider.of<Draw1>(context);
     return Scaffold(
+        // backgroundColor: Colors.red,
         appBar: appbar(),
-        body: Container(
-          decoration: BoxDecoration(color: Colors.grey[700]),
-          padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
-          child: Column(
-            //mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              RepaintBoundary(
-                key: previewContainer,
-                child: Container(
-                  //con > 0 ? uploadimage.imagereturn() : Container()
-                  width: double.infinity,
-                  height: 450,
-                  color: Colors.white,
-                  child: Consumer<CameraGallery>(
-                      builder: (context, provider, child) {
-                    return provider.imagereturn() == 'yes'
-                        ? Image.file(provider.imageFile)
-                        : DrawingBoard(); //drawprovider.drawingBoard(context);
-                  }),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
+        body: Column(
+          //mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RepaintBoundary(
+              key: previewContainer,
+              child: Container(
+                //con > 0 ? uploadimage.imagereturn() : Container()
                 width: double.infinity,
-                height: 50,
-                child: FlatButton(
-                  child: Text("Camera/Phone Photo"),
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  onPressed: () {
-                    devicephoto.showdialong(context);
-                  },
-                ),
+                height: MediaQuery.of(context).size.height * 0.76,
+                color: Colors.white,
+                child: Consumer<CameraGallery>(
+                    builder: (context, provider, child) {
+                  return provider.imagereturn() == 'yes'
+                      ? Image.file(provider.imageFile)
+                      : DrawingBoard(); //drawprovider.drawingBoard(context);
+                }),
               ),
-              SizedBox(
-                height: 10,
+            ),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // Container(
+            //   width: double.infinity,
+            //   height: 50,
+            //   child: FlatButton(
+            //     child: Text("Camera/Phone Photo"),
+            //     color: Colors.blue,
+            //     textColor: Colors.white,
+            //     onPressed: () {
+            //       devicephoto.showdialong(context);
+            //     },
+            //   ),
+            // ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              alignment: Alignment.center,
+              height: 60.0,
+              margin: EdgeInsets.only(
+                  left: 20.0, right: 100.0, top: 0.0, bottom: 10.0),
+              decoration: BoxDecoration(
+                color: Colors.black,
+                  borderRadius: BorderRadius.circular(15.0),
+                  border: Border.all(color: Colors.black, width: 2.0)),
+              child: GestureDetector(
+                child: Text('Identify',style: TextStyle(fontSize: 25.0,color: Colors.white),),
+                onTap: () async{
+                  //rint(devicephoto.imageFile);
+                  //File imagephoto = takeScreenShot(previewContainer)[0];
+                  // ByteData imagesize = takeScreenShot(previewContainer);
+                  // print("imagesize");print(imagesize);
+                  var image = await takeScreenShot(previewContainer);
+                  //print("++++++");
+                  //print(image);
+                  showresult.showdialongoutput(context, image);
+                  devicephoto.noimagereturn();
+                  draw.clean();
+                },
               ),
-              Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: Colors.orangeAccent),
-                child: FlatButton(
-                  child: Text("Check"),
-                  onPressed: () async {
-                    //rint(devicephoto.imageFile);
-                    //File imagephoto = takeScreenShot(previewContainer)[0];
-                    // ByteData imagesize = takeScreenShot(previewContainer);
-                    // print("imagesize");print(imagesize);
-                    var image = await takeScreenShot(previewContainer);
-                    //print("++++++");
-                    //print(image);
-                    showresult.showdialongoutput(context, image);
-                    devicephoto.noimagereturn();
-                    draw.clean();
-                  },
-                  //points.clear();
-                ),
-                height: 100,
-                width: 100,
-              ),
+              // child: FlatButton(
 
-              // showresult.clickbutton(context, imageFile),
-            ],
-          ),
+              //   color: Colors.black,
+              //   textColor: Colors.white,
+              //   child: Text("Identify"),
+              //   onPressed: () async {
+              //     //rint(devicephoto.imageFile);
+              //     //File imagephoto = takeScreenShot(previewContainer)[0];
+              //     // ByteData imagesize = takeScreenShot(previewContainer);
+              //     // print("imagesize");print(imagesize);
+              //     var image = await takeScreenShot(previewContainer);
+              //     //print("++++++");
+              //     //print(image);
+              //     showresult.showdialongoutput(context, image);
+              //     devicephoto.noimagereturn();
+              //     draw.clean();
+              //   },
+              //   //points.clear();
+              // ),
+            ),
+
+            // showresult.clickbutton(context, imageFile),
+          ],
         ),
         floatingActionButton: draw.cleancanvas());
   }
