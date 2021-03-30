@@ -28,6 +28,7 @@ import "package:dio/dio.dart";
 // }
 
 Future<String> identifyDigitFromAssets(imagepath) async {
+  print('imagepath: $imagepath');
   String url = "http://10.0.2.2:8000/digit/";
 
   // print("----------------------------0");
@@ -39,9 +40,8 @@ Future<String> identifyDigitFromAssets(imagepath) async {
   //print(bytes.buffer.asUint8List());
   // print("-----------------------2");
   FormData formdata = FormData.fromMap({
-    'file': MultipartFile.fromBytes(imagepath.buffer.asUint8List(),
-        filename: "imagepath.toString()"
-        )
+    'image': MultipartFile.fromBytes(imagepath.buffer.asUint8List(),
+        filename: "imagepath.toString()")
   });
   // print(formdata);
   // print("-----------------------3");
