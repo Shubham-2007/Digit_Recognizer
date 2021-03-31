@@ -14,21 +14,30 @@ class HomePage extends StatelessWidget {
           Container(
             width: 150.0,
             height: 150.0,
-            child: Image.asset('assets/logo.png'),
+            
+            child: Image.asset('assets/logo.png',fit: BoxFit.cover,),
           ),
           SizedBox(
             height: 50.0,
           ),
-          Container(
-            margin: EdgeInsets.all(10.0),
-            width: MediaQuery.of(context).size.width,
-            height: 60.0,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                color: Colors.black,
-                border: Border.all(color: Colors.black, width: 5.0),
-                borderRadius: BorderRadius.circular(15.0)),
-            child: GestureDetector(
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Layout()),
+              );
+              print("shubham");
+              //Layout();
+            },
+            child: Container(
+              margin: EdgeInsets.all(10.0),
+              width: MediaQuery.of(context).size.width,
+              height: 60.0,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: Colors.black,
+                  border: Border.all(color: Colors.black, width: 5.0),
+                  borderRadius: BorderRadius.circular(15.0)),
               child: Text(
                 'Draw',
                 style: TextStyle(
@@ -36,37 +45,29 @@ class HomePage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0),
               ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Layout()),
-                );
-                print("shubham");
-                //Layout();
-              },
             ),
           ),
-          Container(
-            margin: EdgeInsets.all(10.0),
-            width: MediaQuery.of(context).size.width,
-            height: 60.0,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.black, width: 5.0),
-                borderRadius: BorderRadius.circular(15.0)),
-            child: GestureDetector(
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => UploadImage()),
+              );
+              
+            },
+            child: Container(
+              margin: EdgeInsets.all(10.0),
+              width: MediaQuery.of(context).size.width,
+              height: 60.0,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black, width: 5.0),
+                  borderRadius: BorderRadius.circular(15.0)),
               child: Text(
                 'Upload Image',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
               ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => UploadImage()),
-                );
-                
-              },
             ),
           )
         ],

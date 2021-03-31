@@ -4,12 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:digit_finder/screen/widget.dart';
-//import 'package:digit_finder/server/DrawingPoints.dart';
 import 'package:digit_finder/input_output/canvas.dart';
-// import 'dart:io';
-// import 'dart:ui' as ui;
-// import 'package:flutter/services.dart';
-// import 'dart:typed_data';
 
 // ignore: must_be_immutable
 class Layout extends StatelessWidget {
@@ -31,7 +26,7 @@ class Layout extends StatelessWidget {
               key: previewContainer,
               child: Container(
                 //con > 0 ? uploadimage.imagereturn() : Container()
-                width: double.infinity,
+                width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.76,
                 color: Colors.white,
                 child: 
@@ -62,53 +57,34 @@ class Layout extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              alignment: Alignment.center,
-              height: 60.0,
-              margin: EdgeInsets.only(
-                  left: 20.0, right: 100.0, top: 0.0, bottom: 10.0),
-              decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(15.0),
-                  border: Border.all(color: Colors.black, width: 2.0)),
-              child: GestureDetector(
+            GestureDetector(
+              onTap: () async {
+                //print(devicephoto.imageFile);
+                //File imagephoto = takeScreenShot(previewContainer)[0];
+                // ByteData imagesize = takeScreenShot(previewContainer);
+                // print("imagesize");print(imagesize);
+                var image = await takeScreenShot(previewContainer);
+                //print("++++++");
+                //print(image);
+                showresult.showdialongoutput(context, image);
+                //devicephoto.noimagereturn();
+                draw.clean();
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                alignment: Alignment.center,
+                height: 60.0,
+                margin: EdgeInsets.only(
+                    left: 20.0, right: 100.0, top: 0.0, bottom: 10.0),
+                decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(15.0),
+                    border: Border.all(color: Colors.black, width: 2.0)),
                 child: Text(
                   'Identify',
                   style: TextStyle(fontSize: 25.0, color: Colors.white),
                 ),
-                onTap: () async {
-                  //print(devicephoto.imageFile);
-                  //File imagephoto = takeScreenShot(previewContainer)[0];
-                  // ByteData imagesize = takeScreenShot(previewContainer);
-                  // print("imagesize");print(imagesize);
-                  var image = await takeScreenShot(previewContainer);
-                  //print("++++++");
-                  //print(image);
-                  showresult.showdialongoutput(context, image);
-                  //devicephoto.noimagereturn();
-                  draw.clean();
-                },
               ),
-              // child: FlatButton(
-
-              //   color: Colors.black,
-              //   textColor: Colors.white,
-              //   child: Text("Identify"),
-              //   onPressed: () async {
-              //     //rint(devicephoto.imageFile);
-              //     //File imagephoto = takeScreenShot(previewContainer)[0];
-              //     // ByteData imagesize = takeScreenShot(previewContainer);
-              //     // print("imagesize");print(imagesize);
-              //     var image = await takeScreenShot(previewContainer);
-              //     //print("++++++");
-              //     //print(image);
-              //     showresult.showdialongoutput(context, image);
-              //     devicephoto.noimagereturn();
-              //     draw.clean();
-              //   },
-              //   //points.clear();
-              // ),
             ),
 
             // showresult.clickbutton(context, imageFile),

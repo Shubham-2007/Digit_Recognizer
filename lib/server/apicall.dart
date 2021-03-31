@@ -45,7 +45,13 @@ Future<String> identifyDigitFromAssets(imagepath) async {
   // print(formdata);
   // print("-----------------------3");
   Dio dio = Dio();
-  Response response = await dio.post(url, data: formdata);
+  Response response;
+  try {
+    response = await dio.post(url, data: formdata);
+  } on DioError catch (e) {
+    if (e.response.statusCode == 500) return 'Server Error';
+  }
+
   print(response.data);
   // print("-----------------------4");
   return response.data['digit'];
