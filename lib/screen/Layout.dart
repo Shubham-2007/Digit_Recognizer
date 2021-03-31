@@ -13,7 +13,7 @@ class Layout extends StatelessWidget {
   // DrawingBoard floatbutton = new DrawingBoard();
   @override
   Widget build(BuildContext context) {
-    final devicephoto = Provider.of<CameraGallery>(context);
+    //final devicephoto = Provider.of<CameraGallery>(context);
     final showresult = Provider.of<Output>(context);
     final draw = Provider.of<Draw1>(context);
     return Scaffold(
@@ -26,15 +26,17 @@ class Layout extends StatelessWidget {
               key: previewContainer,
               child: Container(
                 //con > 0 ? uploadimage.imagereturn() : Container()
-                width: double.infinity,
+                width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.76,
                 color: Colors.white,
-                child: Consumer<CameraGallery>(
-                    builder: (context, provider, child) {
-                  return provider.imagereturn() == 'yes'
-                      ? Image.file(provider.imageFile)
-                      : DrawingBoard(); //drawprovider.drawingBoard(context);
-                }),
+                child: 
+                // Consumer<CameraGallery>(
+                //     builder: (context, provider, child) {
+                //   return provider.imagereturn() == 'yes'
+                //       ? Image.file(provider.imageFile)
+                //       : 
+                      DrawingBoard() //drawprovider.drawingBoard(context);
+                // }),
               ),
             ),
             // SizedBox(
@@ -55,50 +57,34 @@ class Layout extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              alignment: Alignment.center,
-              height: 60.0,
-              margin: EdgeInsets.only(
-                  left: 20.0, right: 100.0, top: 0.0, bottom: 10.0),
-              decoration: BoxDecoration(
-                color: Colors.black,
-                  borderRadius: BorderRadius.circular(15.0),
-                  border: Border.all(color: Colors.black, width: 2.0)),
-              child: GestureDetector(
-                child: Text('Identify',style: TextStyle(fontSize: 25.0,color: Colors.white),),
-                onTap: () async{
-                  //rint(devicephoto.imageFile);
-                  //File imagephoto = takeScreenShot(previewContainer)[0];
-                  // ByteData imagesize = takeScreenShot(previewContainer);
-                  // print("imagesize");print(imagesize);
-                  var image = await takeScreenShot(previewContainer);
-                  //print("++++++");
-                  //print(image);
-                  showresult.showdialongoutput(context, image);
-                  devicephoto.noimagereturn();
-                  draw.clean();
-                },
+            GestureDetector(
+              onTap: () async {
+                //print(devicephoto.imageFile);
+                //File imagephoto = takeScreenShot(previewContainer)[0];
+                // ByteData imagesize = takeScreenShot(previewContainer);
+                // print("imagesize");print(imagesize);
+                var image = await takeScreenShot(previewContainer);
+                //print("++++++");
+                //print(image);
+                showresult.showdialongoutput(context, image);
+                //devicephoto.noimagereturn();
+                draw.clean();
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                alignment: Alignment.center,
+                height: 60.0,
+                margin: EdgeInsets.only(
+                    left: 20.0, right: 100.0, top: 0.0, bottom: 10.0),
+                decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(15.0),
+                    border: Border.all(color: Colors.black, width: 2.0)),
+                child: Text(
+                  'Identify',
+                  style: TextStyle(fontSize: 25.0, color: Colors.white),
+                ),
               ),
-              // child: FlatButton(
-
-              //   color: Colors.black,
-              //   textColor: Colors.white,
-              //   child: Text("Identify"),
-              //   onPressed: () async {
-              //     //rint(devicephoto.imageFile);
-              //     //File imagephoto = takeScreenShot(previewContainer)[0];
-              //     // ByteData imagesize = takeScreenShot(previewContainer);
-              //     // print("imagesize");print(imagesize);
-              //     var image = await takeScreenShot(previewContainer);
-              //     //print("++++++");
-              //     //print(image);
-              //     showresult.showdialongoutput(context, image);
-              //     devicephoto.noimagereturn();
-              //     draw.clean();
-              //   },
-              //   //points.clear();
-              // ),
             ),
 
             // showresult.clickbutton(context, imageFile),

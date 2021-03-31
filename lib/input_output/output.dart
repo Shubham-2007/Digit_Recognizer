@@ -32,24 +32,23 @@ class Output extends ChangeNotifier {
                     SizedBox(
                       height: 10.0,
                     ),
-                    Container(
-                      alignment: Alignment.center,
-                      height: 50.0,
-                      
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      decoration: BoxDecoration(
-                          color: Colors.black,
-                          border: Border.all(color: Colors.black, width: 2.0),
-                          borderRadius: BorderRadius.circular(15.0)),
-                      child: GestureDetector(
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 50.0,
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            border: Border.all(color: Colors.black, width: 2.0),
+                            borderRadius: BorderRadius.circular(15.0)),
                         child: Text(
                           'Okay',
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
                       ),
                     )
                   ],

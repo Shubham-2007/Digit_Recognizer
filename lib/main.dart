@@ -1,8 +1,11 @@
+import 'package:digit_finder/HoemPage.dart';
 import 'package:digit_finder/input_output/camera_gallery.dart';
 import 'package:digit_finder/input_output/output.dart';
+import 'package:digit_finder/screen/Layout.dart';
+import 'package:digit_finder/screen/Uploadimage.dart';
 import 'package:flutter/material.dart';
 //import 'package:provider/provider.dart';
-import 'package:digit_finder/screen/Layout.dart';
+//mport 'package:digit_finder/screen/Layout.dart';
 import 'package:provider/provider.dart';
 //import 'package:digit_finder/screen/Output.dart';
 import 'package:digit_finder/input_output/canvas.dart';
@@ -10,6 +13,7 @@ import 'package:digit_finder/input_output/canvas.dart';
 void main() {
   runApp(MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   @override
@@ -27,12 +31,15 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: Layout(),
+        home: //Layout(),
+        //UploadImage(),
+        HomePage(),
+        //mainpage(),
       ),
     );
   }
 }
-// 
+
 // List providers = ;
 // class MyApp extends StatelessWidget {
 //   @override

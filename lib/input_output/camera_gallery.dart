@@ -20,7 +20,6 @@ class CameraGallery extends ChangeNotifier {
     // ignore: deprecated_member_use
     var picture = await ImagePicker.pickImage(source: ImageSource.camera);
     // print("picture1");
-
     imageFile = picture;
     notifyListeners();
     Navigator.of(context).pop();

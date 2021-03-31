@@ -28,25 +28,30 @@ import "package:dio/dio.dart";
 // }
 
 Future<String> identifyDigitFromAssets(imagepath) async {
-  print('imagepath: $imagepath');
+  //print('imagepath: $imagepath');
   String url = "http://10.0.2.2:8000/digit/";
-
   // print("----------------------------0");
   // print(imagepath);
   // print("-----------------------1");
   // String path = imagepath.toString();
   //var bytes = await rootBundle.load(path.split('\'')[1]);
   //print(bytes.toString());
-  //print(bytes.buffer.asUint8List());
+  //print(imagepath.buffer.asUint8List());
   // print("-----------------------2");
   FormData formdata = FormData.fromMap({
-    'image': MultipartFile.fromBytes(imagepath.buffer.asUint8List(),
+    'file': MultipartFile.fromBytes(imagepath.buffer.asUint8List(),
         filename: "imagepath.toString()")
   });
   // print(formdata);
   // print("-----------------------3");
   Dio dio = Dio();
-  Response response = await dio.post(url, data: formdata);
+  Response response;
+  try {
+    response = await dio.post(url, data: formdata);
+  } on DioError catch (e) {
+    if (e.response.statusCode == 500) return 'Server Error';
+  }
+
   print(response.data);
   // print("-----------------------4");
   return response.data['digit'];
