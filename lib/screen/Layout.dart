@@ -4,12 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:digit_finder/screen/widget.dart';
-//import 'package:digit_finder/server/DrawingPoints.dart';
 import 'package:digit_finder/input_output/canvas.dart';
-// import 'dart:io';
-// import 'dart:ui' as ui;
-// import 'package:flutter/services.dart';
-// import 'dart:typed_data';
 
 // ignore: must_be_immutable
 class Layout extends StatelessWidget {
