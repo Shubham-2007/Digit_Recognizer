@@ -1,4 +1,3 @@
-import 'package:digit_finder/input_output/camera_gallery.dart';
 import 'package:digit_finder/input_output/output.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

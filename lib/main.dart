@@ -1,8 +1,6 @@
 import 'package:digit_finder/HoemPage.dart';
 import 'package:digit_finder/input_output/camera_gallery.dart';
 import 'package:digit_finder/input_output/output.dart';
-import 'package:digit_finder/screen/Layout.dart';
-import 'package:digit_finder/screen/Uploadimage.dart';
 import 'package:flutter/material.dart';
 //import 'package:provider/provider.dart';
 //mport 'package:digit_finder/screen/Layout.dart';
