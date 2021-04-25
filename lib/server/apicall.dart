@@ -29,7 +29,7 @@ import "package:dio/dio.dart";
 
 Future<String> identifyDigitFromAssets(imagepath) async {
   //print('imagepath: $imagepath');
-  String url = "http://10.0.2.2:8000/digit/";
+  String url = "https://digitrecogapi.herokuapp.com/digit/";
   // print("----------------------------0");
   // print(imagepath);
   // print("-----------------------1");
