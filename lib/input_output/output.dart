@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 class Output extends ChangeNotifier {
   Future<void> showdialongoutput(BuildContext context, imagephoto) async {
     var digit = await identifyDigitFromAssets(imagephoto);
+    Navigator.pop(context);
     return showDialog(
         context: context,
         builder: (BuildContext context) {

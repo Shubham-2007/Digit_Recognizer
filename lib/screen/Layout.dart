@@ -24,19 +24,19 @@ class Layout extends StatelessWidget {
             RepaintBoundary(
               key: previewContainer,
               child: Container(
-                //con > 0 ? uploadimage.imagereturn() : Container()
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.76,
-                color: Colors.white,
-                child: 
-                // Consumer<CameraGallery>(
-                //     builder: (context, provider, child) {
-                //   return provider.imagereturn() == 'yes'
-                //       ? Image.file(provider.imageFile)
-                //       : 
+                  //con > 0 ? uploadimage.imagereturn() : Container()
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.76,
+                  color: Colors.white,
+                  child:
+                      // Consumer<CameraGallery>(
+                      //     builder: (context, provider, child) {
+                      //   return provider.imagereturn() == 'yes'
+                      //       ? Image.file(provider.imageFile)
+                      //       :
                       DrawingBoard() //drawprovider.drawingBoard(context);
-                // }),
-              ),
+                  // }),
+                  ),
             ),
             // SizedBox(
             //   height: 10,
@@ -58,6 +58,21 @@ class Layout extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () async {
+                showDialog(
+                    context: context,
+                    builder: (_) {
+                      return AlertDialog(
+                        title: Text('Identifying...'),
+                        content: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),
+                            ),
+                          ],
+                        ),
+                      );
+                    });
                 //print(devicephoto.imageFile);
                 //File imagephoto = takeScreenShot(previewContainer)[0];
                 // ByteData imagesize = takeScreenShot(previewContainer);

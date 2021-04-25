@@ -47,6 +47,7 @@ class CameraGallery extends ChangeNotifier {
   }
 
   Future<void> showdialong(BuildContext context) {
+    
     return showDialog(
         context: context,
         builder: (BuildContext context) {

@@ -49,7 +49,7 @@ class UploadImage extends StatelessWidget {
               width: double.infinity,
 
               color: Colors.white,
-              height: 500,
+              height: 400,
               //MediaQuery.of(context).size.height * 0.7,
               // decoration: BoxDecoration(
               //     // image: DecorationImage(image: AssetImage('assets/logo.png')),
@@ -114,6 +114,21 @@ class UploadImage extends StatelessWidget {
               ),
             ),
             onTap: () async {
+              showDialog(
+                    context: context,
+                    builder: (_) {
+                      return AlertDialog(
+                        title: Text('Identifying...'),
+                        content: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),
+                            ),
+                          ],
+                        ),
+                      );
+                    });
               //print(devicephoto.imageFile);
               //File imagephoto = takeScreenShot(previewContainer)[0];
               //ByteData imagesize = takeScreenShot(previewContainer);
