@@ -4,11 +4,12 @@ import 'package:image_picker/image_picker.dart';
 
 class CameraGallery extends ChangeNotifier {
   File imageFile;
+  //var imagebyte;
 
   void openGallery(BuildContext context) async {
-    // print("1");
+    // print("1-----------------");
     // ignore: deprecated_member_use
-    var picture = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var picture = await ImagePicker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     // print("picture");
     // print(picture);
     imageFile = picture;
@@ -18,7 +19,7 @@ class CameraGallery extends ChangeNotifier {
 
   void opencamera(BuildContext context) async {
     // ignore: deprecated_member_use
-    var picture = await ImagePicker.pickImage(source: ImageSource.camera);
+    var picture = await ImagePicker.pickImage(source: ImageSource.camera );
     // print("picture1");
     imageFile = picture;
     notifyListeners();
@@ -32,6 +33,14 @@ class CameraGallery extends ChangeNotifier {
       return "no";
   }
 
+  // Future<void> image8byte() async {
+  //   String path = imageFile.toString();
+  //   final ByteData bytedata = await rootBundle.load(path.split('\'')[1]);
+  //   final Uint8List image = bytedata.buffer.asUint8List();
+  //   imagebyte = image;
+  //   notifyListeners();
+  // }
+
   void noimagereturn() {
     imageFile = null;
     notifyListeners();
@@ -42,7 +51,7 @@ class CameraGallery extends ChangeNotifier {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Make a Chice!"),
+            title: Text("Make a Choice!"),
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[

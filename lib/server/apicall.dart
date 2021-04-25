@@ -40,10 +40,9 @@ Future<String> identifyDigitFromAssets(imagepath) async {
   // print("-----------------------2");
   FormData formdata = FormData.fromMap({
     'file': MultipartFile.fromBytes(imagepath.buffer.asUint8List(),
-        filename: "imagepath.toString()")
+        filename: "assets/download (1).png")
   });
-  // print(formdata);
-  // print("-----------------------3");
+
   Dio dio = Dio();
   Response response;
   try {
@@ -53,19 +52,6 @@ Future<String> identifyDigitFromAssets(imagepath) async {
   }
 
   print(response.data);
-  // print("-----------------------4");
+
   return response.data['digit'];
 }
-
-// Future<String> identifyDigitFromAssetscanvas(String filename) async {
-//   String url = "http://10.0.2.2:8000/digit/";
-//   var request = http.MultipartRequest('POST', Uri.parse(url));
-//   request.files.add(
-//     http.MultipartFile.fromBytes(
-//       'file',
-//       File(filename).readAsBytesSync(),
-//       filename: filename.split("/").last
-//     )
-//   );
-//   var res = await request.send();
-// }

@@ -28,13 +28,13 @@ takeScreenShot(GlobalKey previewContainer) async {
   RenderRepaintBoundary boundary =
       previewContainer.currentContext.findRenderObject();
   ui.Image image = await boundary.toImage();
-  print("*********************0");
-  print(image);
-  print("*********************1");
+  //print("*********************0");
+  //print(image);
+  //print("*********************1");
   //final directory = (await getApplicationDocumentsDirectory()).path;
   var bytedata = await image.toByteData(format: ui.ImageByteFormat.png);
-  print(bytedata);
-  print("*********************2");
+  //print(bytedata);
+  //print("*********************2");
   //var filepath =
   Uint8List pngBytes = bytedata.buffer.asUint8List();
   //print(pngBytes);
@@ -60,7 +60,6 @@ changeimagepathtobyte(imagepath) async {
   //print(list);
   //print(pngBytes);
   // print("*********************1");
-  return list;
   //await ImagePickerSaver.saveFile(fileData: byteData.buffer.asUint8List());
   // return byteData;
   //print(filepath);
@@ -72,6 +71,7 @@ changeimagepathtobyte(imagepath) async {
   // print(imgFile);
   // imgFile.delete();
   // print(imgFile);
+  return list;
 }
 
 Widget appbar() {
